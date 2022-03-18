@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Answer } from 'src/app/models/answer';
 
 @Component({
   selector: 'app-form-answer',
   templateUrl: './form-answer.component.html',
-  styleUrls: ['./form-answer.component.css']
+  styleUrls: ['./form-answer.component.css'],
 })
 export class FormAnswerComponent implements OnInit {
+  @Input() answer!: Answer;
+  isExpanded: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  toggleExpanded(): void {
+    this.isExpanded = !this.isExpanded;
   }
-
 }

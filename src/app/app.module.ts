@@ -14,6 +14,7 @@ import { FormsTableComponent } from './components/forms-table/forms-table.compon
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { CreateFormItemComponent } from './components/create-form-item/create-form-item.component';
 import { FormAnswerComponent } from './components/form-answer/form-answer.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormAnswerComponent } from './components/form-answer/form-answer.compon
     BreadcrumbsComponent,
     CreateFormItemComponent,
     FormAnswerComponent,
+    SpinnerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

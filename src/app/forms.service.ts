@@ -16,6 +16,10 @@ export class FormsService {
     return this.http.get<Form[]>(BASE_URL);
   }
 
+  getForm(id: number): Observable<Form> {
+    return this.http.get<Form>(`${BASE_URL}/${id}`);
+  }
+
   createForm(form: Form): Observable<Form> {
     return this.http.post<Form>(BASE_URL, form);
   }

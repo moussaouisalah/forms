@@ -31,17 +31,23 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="bg-white">
+    <tr class="bg-white" *ngFor="let form of forms">
       <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">
-        Apple Magic Mouse 2
+        {{ form.title }}
       </td>
-      <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap">White</td>
       <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap">
-        Accessories
+        {{ form.creator }}
       </td>
-      <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap">$99</td>
+      <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap">
+        {{ form.creationDate | date: "dd/mm/yyyy" }}
+      </td>
+      <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap">
+        {{ form.answers.length }}
+      </td>
       <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-        <a routerLink="/forms/id" class="text-blue-600 hover:underline">View</a>
+        <a [routerLink]="'' + form.id" class="text-blue-600 hover:underline"
+          >View</a
+        >
       </td>
     </tr>
   </tbody>
