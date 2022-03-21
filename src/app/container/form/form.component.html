@@ -7,7 +7,7 @@
     ]"
   ></app-breadcrumbs>
   <app-spinner *ngIf="isLoading"></app-spinner>
-  <p *ngIf="hasError">error</p>
+  <app-error *ngIf="hasError"></app-error>
   <div
     *ngIf="!isLoading && !hasError && form"
     class="w-full mt-4 bg-white shadow overflow-hidden sm:rounded-lg"

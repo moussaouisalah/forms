@@ -17,6 +17,7 @@ import { CreateFormItemComponent } from './components/create-form-item/create-fo
 import { FormAnswerComponent } from './components/form-answer/form-answer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { FormControlComponent } from './components/form-control/form-control.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FormControlComponent } from './components/form-control/form-control.com
     FormAnswerComponent,
     SpinnerComponent,
     FormControlComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
