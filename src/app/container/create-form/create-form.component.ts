@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormsService } from 'src/app/forms.service';
 
@@ -19,9 +25,9 @@ export class CreateFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      title: '',
-      creator: '',
-      items: this.fb.array([this.fb.control('')]),
+      title: ['', Validators.required],
+      creator: ['', Validators.required],
+      items: this.fb.array([this.fb.control('', Validators.required)]),
     });
   }
 
@@ -30,7 +36,7 @@ export class CreateFormComponent implements OnInit {
   }
 
   addItem(): void {
-    this.items.push(this.fb.control(''));
+    this.items.push(this.fb.control('', Validators.required));
   }
 
   removeItem(index: number): void {
@@ -38,6 +44,9 @@ export class CreateFormComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.form?.invalid) {
+      return;
+    }
     this.isSubmitting = true;
     this.formsService.createForm(this.form?.value).subscribe((form) => {
       this.router.navigate([`/forms/${form.id}`]);

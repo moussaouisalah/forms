@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsService } from 'src/app/forms.service';
 import { Form } from 'src/app/models/form';
@@ -44,8 +44,10 @@ export class AnswerFormComponent implements OnInit {
 
   createAnswerForm() {
     this.answers = this.fb.group({
-      creator: '',
-      items: this.fb.array(this.form!.items.map((_) => this.fb.control(''))),
+      creator: ['', Validators.required],
+      items: this.fb.array(
+        this.form!.items.map((_) => this.fb.control('', Validators.required))
+      ),
     });
   }
 
