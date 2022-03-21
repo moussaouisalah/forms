@@ -47,7 +47,6 @@ export class AnswerFormComponent implements OnInit {
       creator: '',
       items: this.fb.array(this.form!.items.map((_) => this.fb.control(''))),
     });
-    console.log(this.answers, this.form, this.items.length);
   }
 
   onSubmit() {
