@@ -33,6 +33,10 @@ export class CreateFormComponent implements OnInit {
     this.items.push(this.fb.control(''));
   }
 
+  removeItem(index: number): void {
+    this.items.removeAt(index);
+  }
+
   onSubmit(): void {
     this.isSubmitting = true;
     this.formsService.createForm(this.form?.value).subscribe((form) => {

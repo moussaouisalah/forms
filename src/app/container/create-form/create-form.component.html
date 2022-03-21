@@ -47,6 +47,14 @@
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         />
       </div>
+      <button
+        *ngIf="items.controls.length > 1"
+        (click)="removeItem(i)"
+        type="button"
+        class="h-10 aspect-square rounded-md bg-red-600 text-white font-bold hover:bg-red-700"
+      >
+        X
+      </button>
     </div>
 
     <div class="mb-10">
