@@ -7,5 +7,5 @@ export interface Form {
   creator: string;
   creationDate: number;
   answers: Answer[];
-  items: FormItem[];
+  items: string[];
 }

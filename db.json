@@ -30,7 +30,24 @@
         "how are you"
       ],
       "creationDate": 1647852998027,
-      "answers": [],
+      "answers": [
+        {
+          "creator": "test",
+          "items": [
+            "fine"
+          ]
+        },
+        {
+          "creator": "hhh",
+          "items": [
+            {
+              "name": "how are you",
+              "value": "great"
+            }
+          ],
+          "creationDate": 1647854453761
+        }
+      ],
       "id": 2
     },
     {

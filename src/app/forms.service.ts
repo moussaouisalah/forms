@@ -27,9 +27,17 @@ export class FormsService {
   }
 
   createAnswer(form: Form, answer: Answer): Observable<Form> {
+    const fullAnswer = {
+      ...answer,
+      creationDate: Date.now(),
+      items: answer.items.map((item, i) => ({
+        name: form.items[i],
+        value: item,
+      })),
+    };
     return this.http.put<Form>(`${BASE_URL}/${form.id}`, {
       ...form,
-      answers: [...form.answers, answer],
+      answers: [...form.answers, fullAnswer],
     });
   }
 }
