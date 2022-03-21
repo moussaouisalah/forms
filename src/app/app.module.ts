@@ -13,10 +13,8 @@ import { AnswerFormComponent } from './container/answer-form/answer-form.compone
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsTableComponent } from './components/forms-table/forms-table.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
-import { CreateFormItemComponent } from './components/create-form-item/create-form-item.component';
 import { FormAnswerComponent } from './components/form-answer/form-answer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { FormControlComponent } from './components/form-control/form-control.component';
 import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
@@ -30,10 +28,8 @@ import { ErrorComponent } from './components/error/error.component';
     NavbarComponent,
     FormsTableComponent,
     BreadcrumbsComponent,
-    CreateFormItemComponent,
     FormAnswerComponent,
     SpinnerComponent,
-    FormControlComponent,
     ErrorComponent,
   ],
   imports: [
