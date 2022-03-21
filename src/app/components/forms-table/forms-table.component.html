@@ -23,6 +23,12 @@
         scope="col"
         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase"
       >
+        Questions
+      </th>
+      <th
+        scope="col"
+        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase"
+      >
         Answers
       </th>
       <th scope="col" class="relative py-3 px-6">
@@ -40,6 +46,9 @@
       </td>
       <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap">
         {{ form.creationDate | date: "dd/MM/yyyy" }}
+      </td>
+      <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap">
+        {{ form.items.length }}
       </td>
       <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap">
         {{ form.answers.length }}

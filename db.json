@@ -1,3 +1,40 @@
 {
-  "forms": []
+  "forms": [
+    {
+      "title": "Favorite stuff",
+      "creator": "Salaheddine Moussaoui",
+      "items": [
+        "What is your favorite color?",
+        "What is your favorite day of the week?",
+        "What is your favorite letter?",
+        "What is your favorite number?"
+      ],
+      "creationDate": 1647860175211,
+      "answers": [
+        {
+          "creator": "Salaheddine Moussaoui",
+          "items": [
+            {
+              "name": "What is your favorite color?",
+              "value": "red"
+            },
+            {
+              "name": "What is your favorite day of the week?",
+              "value": "friday"
+            },
+            {
+              "name": "What is your favorite letter?",
+              "value": "i don't have one"
+            },
+            {
+              "name": "What is your favorite number?",
+              "value": "13"
+            }
+          ],
+          "creationDate": 1647860225102
+        }
+      ],
+      "id": 1
+    }
+  ]
 }
