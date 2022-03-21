@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import { CreateFormItemComponent } from './components/create-form-item/create-form-item.component';
 import { FormAnswerComponent } from './components/form-answer/form-answer.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { FormControlComponent } from './components/form-control/form-control.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +32,14 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     CreateFormItemComponent,
     FormAnswerComponent,
     SpinnerComponent,
+    FormControlComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

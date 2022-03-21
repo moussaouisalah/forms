@@ -7,6 +7,6 @@ export enum FormItemType {
 
 export interface FormItem {
   name: string;
-  type: FormItemType;
-  isRequired: boolean;
+  //type: FormItemType;
+  //isRequired: boolean;
 }

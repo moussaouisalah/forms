@@ -21,6 +21,8 @@ export class FormsService {
   }
 
   createForm(form: Form): Observable<Form> {
+    form.creationDate = Date.now();
+    form.answers = [];
     return this.http.post<Form>(BASE_URL, form);
   }
 
