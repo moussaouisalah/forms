@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { FormsService } from 'src/app/forms.service';
 
 @Component({
@@ -14,9 +15,12 @@ import { FormsService } from 'src/app/forms.service';
   templateUrl: './create-form.component.html',
   styleUrls: ['./create-form.component.css'],
 })
-export class CreateFormComponent implements OnInit {
+export class CreateFormComponent implements OnInit, OnDestroy {
   form?: FormGroup;
   isSubmitting: boolean = false;
+
+  createFormSubscription?: Subscription;
+
   constructor(
     private fb: FormBuilder,
     private formsService: FormsService,
@@ -29,6 +33,10 @@ export class CreateFormComponent implements OnInit {
       creator: ['', Validators.required],
       items: this.fb.array([this.fb.control('', Validators.required)]),
     });
+  }
+
+  ngOnDestroy(): void {
+    this.createFormSubscription?.unsubscribe();
   }
 
   get items(): FormArray {
@@ -48,8 +56,10 @@ export class CreateFormComponent implements OnInit {
       return;
     }
     this.isSubmitting = true;
-    this.formsService.createForm(this.form?.value).subscribe((form) => {
-      this.router.navigate([`/forms/${form.id}`]);
-    });
+    this.createFormSubscription = this.formsService
+      .createForm(this.form?.value)
+      .subscribe((form) => {
+        this.router.navigate([`/forms/${form.id}`]);
+      });
   }
 }

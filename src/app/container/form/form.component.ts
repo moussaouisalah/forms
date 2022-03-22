@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { FormsService } from 'src/app/forms.service';
 import { Form } from 'src/app/models/form';
 
@@ -8,10 +9,12 @@ import { Form } from 'src/app/models/form';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
-export class FormComponent implements OnInit {
+export class FormComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   hasError: boolean = false;
   form?: Form;
+
+  formSubscription?: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,7 +23,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.formsService.getForm(id).subscribe({
+    this.formSubscription = this.formsService.getForm(id).subscribe({
       next: (form) => {
         this.form = form;
         this.isLoading = false;
@@ -30,5 +33,9 @@ export class FormComponent implements OnInit {
         this.hasError = true;
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.formSubscription?.unsubscribe();
   }
 }

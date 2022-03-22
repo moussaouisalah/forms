@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { FormsService } from 'src/app/forms.service';
 import { Form } from 'src/app/models/form';
 
@@ -7,15 +8,17 @@ import { Form } from 'src/app/models/form';
   templateUrl: './forms-list.component.html',
   styleUrls: ['./forms-list.component.css'],
 })
-export class FormsListComponent implements OnInit {
+export class FormsListComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   hasError: boolean = false;
   forms?: Form[];
 
+  formsSubscription?: Subscription;
+
   constructor(private formsService: FormsService) {}
 
   ngOnInit(): void {
-    this.formsService.getForms().subscribe({
+    this.formsSubscription = this.formsService.getForms().subscribe({
       next: (forms) => {
         this.forms = forms;
         this.isLoading = false;
@@ -26,5 +29,9 @@ export class FormsListComponent implements OnInit {
         this.hasError = true;
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.formsSubscription?.unsubscribe();
   }
 }

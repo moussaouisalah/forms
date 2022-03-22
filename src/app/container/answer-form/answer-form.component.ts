@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { FormsService } from 'src/app/forms.service';
 import { Form } from 'src/app/models/form';
 
@@ -9,12 +10,15 @@ import { Form } from 'src/app/models/form';
   templateUrl: './answer-form.component.html',
   styleUrls: ['./answer-form.component.css'],
 })
-export class AnswerFormComponent implements OnInit {
+export class AnswerFormComponent implements OnInit, OnDestroy {
   form?: Form;
   answers?: FormGroup;
   isLoading: boolean = true;
   hasError: boolean = false;
   isSubmitting: boolean = false;
+
+  formSubscription?: Subscription;
+  createAnswerSubscription?: Subscription;
 
   constructor(
     private formsService: FormsService,
@@ -25,7 +29,7 @@ export class AnswerFormComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.formsService.getForm(id).subscribe({
+    this.formSubscription = this.formsService.getForm(id).subscribe({
       next: (form) => {
         this.form = form;
         this.createAnswerForm();
@@ -36,6 +40,11 @@ export class AnswerFormComponent implements OnInit {
         this.hasError = true;
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.formSubscription?.unsubscribe();
+    this.createAnswerSubscription?.unsubscribe();
   }
 
   get items(): FormArray {
@@ -53,7 +62,7 @@ export class AnswerFormComponent implements OnInit {
 
   onSubmit() {
     this.isSubmitting = true;
-    this.formsService
+    this.createAnswerSubscription = this.formsService
       .createAnswer(this.form!, this.answers?.value)
       .subscribe(() => {
         this.router.navigate([`/forms/${this.form!.id}`]);
